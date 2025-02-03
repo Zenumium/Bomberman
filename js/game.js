@@ -1,48 +1,28 @@
-import { TileMap } from "./Tilemap.js";
-import { CollisionManager } from "./collison.js";
-import { Player } from "./player.js";
-
-const tileMap = new TileMap();
-tileMap.draw();
-const player = new Player(tileMap.map);
-player.render();
-player.setupControls();
-// Game.js
-export class Game {
-  constructor() {
-    this.tileMap = new TileMap();
-    this.collisionManager = new CollisionManager(this.tileMap);
-    this.player = new Player(this.tileMap, this.collisionManager); // where the player is positioned
-    this.pauseManager = new PauseManager(this);
-    this.setupControls();
-  }
-  setupControls() {
-    document.addEventListener("keydown", (e) => {
-      if (this.pauseManager.isPaused) return;
-      console.log("keys pressed"); // log the keypress
-
-      switch (e.key) {
-        case "ArrowUp":
-          this.player.move("up");
-          break;
-        case "ArrowDown":
-          this.player.move("down");
-          break;
-        case "ArrowLeft":
-          this.player.move("left");
-          break;
-        case "ArrowRight":
-          this.player.move("right");
-          break;
-        case " ":
-          this.player.placeBomb();
-          break;
-      }
-    });
+class Game {
+  static init() {
+    this.tilemap = new Tilemap();
+    this.player = new Player();
+    this.pause = new Pause();
+    this.isPaused = false;
   }
 
-  start() {
-    this.tileMap.draw();
-    this.player.updatePosition();
+  static canMove(x, y) {
+    return !Collision.checkCollision(x, y);
+  }
+
+  static placeBomb(x, y) {
+    if (!this.isPaused) {
+      return BombCollision.placeBomb(x, y);
+    }
+    return false;
+  }
+
+  static toggleGameState() {
+    this.isPaused = !this.isPaused;
   }
 }
+
+// Initialize the game when the page loads
+window.addEventListener("load", () => {
+  Game.init();
+});
