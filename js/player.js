@@ -86,7 +86,7 @@ export class Player {
     bombElement.setAttribute("data-y", this.y);
 
     const bombImage = document.createElement("img");
-    bombImage.src = "/assests/bomb.png"; // replace with your image URL
+    bombImage.src = "/assests/src-game/bomb.png"; // replace with your image URL
     bombImage.style.width = "100%";
     bombImage.style.height = "100%";
     bombImage.style.objectFit = "cover";
