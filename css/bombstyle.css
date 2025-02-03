@@ -12,7 +12,7 @@
   }
 }
 .bomb {
-  background-color: #c0392b;
+  background-color: none;
   animation: pulse 1s infinite;
 }
 
