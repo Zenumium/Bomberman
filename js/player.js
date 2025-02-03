@@ -84,9 +84,9 @@ export class Player {
 
     bombElement.setAttribute("data-x", this.x);
     bombElement.setAttribute("data-y", this.y);
-
+    // Create an img element for the bomb image
     const bombImage = document.createElement("img");
-    bombImage.src = "/assests/src-game/bomb.png"; // replace with your image URL
+    bombImage.src = "/assests/src-game/bomb.png";
     bombImage.style.width = "100%";
     bombImage.style.height = "100%";
     bombImage.style.objectFit = "cover";
@@ -118,12 +118,11 @@ export class Player {
 
       // Create an img element for the explosion image
       const explosionImage = document.createElement("img");
-      explosionImage.src = "/assests/src-game/explosion.png"; // replace with your image URL
+      explosionImage.src = "/assests/src-game/explosion.png";
       explosionImage.style.width = "100%";
       explosionImage.style.height = "100%";
       explosionImage.style.objectFit = "cover";
 
-      // Append the img element to the explosionElement
       explosionElement.appendChild(explosionImage);
 
       const gameBoard = document.getElementById("gameBoard");
