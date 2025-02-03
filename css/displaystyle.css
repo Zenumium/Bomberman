@@ -1,0 +1,20 @@
+#batterydot {
+  position: absolute;
+  background-color: black;
+  border: none;
+  top: 180px;
+  left: 20px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: default;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+h3 {
+  position: absolute;
+  font-size: 12px;
+  top: 10px;
+  right: -21px;
+  color: white;
+  margin-top: 30px;
+}
