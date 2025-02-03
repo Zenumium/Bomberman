@@ -31,7 +31,7 @@ export class Game {
         case "ArrowRight":
           this.player.move("right");
           break;
-        case "32":
+        case " ":
           this.player.placeBomb();
           break;
         case "Escape":

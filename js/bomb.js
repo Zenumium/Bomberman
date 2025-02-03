@@ -5,48 +5,55 @@ export class Bomb {
     this.y = y;
     this.tileMap = tileMap;
     this.element = null;
-    this.explosionRange = 2;
+    this.explosionTimeout = 2000; // 2 seconds until explosion
+    console.log(`Bomb coordinates: x=${x}, y=${y}`);
+    console.log(`Tile size: ${tileMap.tileSize}px`);
+    console.log(
+      `Game container element: ${document.getElementById("gameContainer")}`
+    );
   }
 
   plant() {
+    console.log(`Planting bomb at x=${this.x}, y=${this.y}`);
     this.element = document.createElement("div");
     this.element.className = "bomb";
     this.element.style.width = `${this.tileMap.tileSize - 8}px`;
     this.element.style.height = `${this.tileMap.tileSize - 8}px`;
     this.element.style.backgroundColor = "#000";
-    this.element.style.borderRadius = "50%";
     this.element.style.position = "absolute";
     this.element.style.left = `${this.x * this.tileMap.tileSize + 4}px`;
     this.element.style.top = `${this.y * this.tileMap.tileSize + 4}px`;
+    this.element.style.borderRadius = "50%";
 
     document.getElementById("gameContainer").appendChild(this.element);
 
-    setTimeout(() => this.explode(), 2000);
+    setTimeout(() => this.explode(), this.explosionTimeout);
   }
 
   explode() {
-    this.element.remove();
+    if (this.element && this.element.parentNode) {
+      this.element.parentNode.removeChild(this.element);
+    }
 
-    // Check explosion in all directions
-    const directions = [
-      [1, 0],
-      [-1, 0],
-      [0, 1],
-      [0, -1],
-    ];
+    // Create explosion effect
+    const explosionElement = document.createElement("div");
+    explosionElement.className = "explosion";
+    explosionElement.style.width = `${this.tileMap.tileSize}px`;
+    explosionElement.style.height = `${this.tileMap.tileSize}px`;
+    explosionElement.style.backgroundColor = "#f00"; // Red color for explosion
+    explosionElement.style.position = "absolute";
+    explosionElement.style.left = `${this.x * this.tileMap.tileSize}px`;
+    explosionElement.style.top = `${this.y * this.tileMap.tileSize}px`;
+    explosionElement.style.borderRadius = "50%";
+    explosionElement.style.animation = "explode 0.5s"; // Add animation effect
 
-    directions.forEach(([dx, dy]) => {
-      for (let i = 1; i <= this.explosionRange; i++) {
-        const newX = this.x + dx * i;
-        const newY = this.y + dy * i;
+    document.getElementById("gameContainer").appendChild(explosionElement);
 
-        if (this.tileMap.getTile(newX, newY) === 2) {
-          this.tileMap.setTile(newX, newY, 0);
-          break;
-        } else if (this.tileMap.getTile(newX, newY) === 1) {
-          break;
-        }
+    // Remove explosion effect after animation completes
+    setTimeout(() => {
+      if (explosionElement && explosionElement.parentNode) {
+        explosionElement.parentNode.removeChild(explosionElement);
       }
-    });
+    }, 500); // 0.5 seconds
   }
 }

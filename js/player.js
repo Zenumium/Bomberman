@@ -1,4 +1,4 @@
-// Player.js
+import { Bomb } from "./bomb.js";
 export class Player {
   constructor(x, y, tileMap, collisionManager) {
     this.x = x;
@@ -7,6 +7,8 @@ export class Player {
     this.collisionManager = collisionManager;
     this.speed = 3;
     this.element = this.createPlayerElement();
+    this.bombsAvailable = 3;
+    this.activeBombs = new Set();
   }
 
   createPlayerElement() {
@@ -56,9 +58,18 @@ export class Player {
     const tileX = Math.floor(this.x / this.tileMap.tileSize);
     const tileY = Math.floor(this.y / this.tileMap.tileSize);
 
-    if (this.tileMap.getTile(tileX, tileY) === 0) {
+    if (this.bombsAvailable > 0 && this.tileMap.getTile(tileX, tileY) === 0) {
       const bomb = new Bomb(tileX, tileY, this.tileMap);
+      this.activeBombs.add(bomb);
+      this.bombsAvailable--;
+
       bomb.plant();
+
+      // Return bomb to player after explosion
+      setTimeout(() => {
+        this.activeBombs.delete(bomb);
+        this.bombsAvailable++;
+      }, bomb.explosionTimeout);
     }
   }
 }

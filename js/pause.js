@@ -4,6 +4,7 @@ export class PauseManager {
     this.game = game;
     this.isPaused = false;
     this.pauseMenu = this.createPauseMenu();
+    document.addEventListener("keydown", (event) => this.handleKeyPress(event));
   }
 
   createPauseMenu() {
@@ -19,14 +20,21 @@ export class PauseManager {
     menu.style.padding = "20px";
     menu.innerHTML = `
             <h2>Game Paused</h2>
-            <button id="resumeButton">Resume</button>
         `;
     document.getElementById("gameContainer").appendChild(menu);
     return menu;
   }
 
   togglePause() {
-    this.isPaused = !this.isPaused;
-    this.pauseMenu.style.display = this.isPaused ? "block" : "none";
+    if (!this.isPaused) {
+      this.isPaused = true;
+      this.pauseMenu.style.display = "block";
+    }
+  }
+
+  handleKeyPress(event) {
+    if (event.key === "Escape") {
+      this.togglePause();
+    }
   }
 }
