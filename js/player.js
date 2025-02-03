@@ -5,7 +5,7 @@ export class Player {
     this.y = y;
     this.tileMap = tileMap;
     this.collisionManager = collisionManager;
-    this.speed = 3;
+    this.speed = 5;
     this.element = this.createPlayerElement();
     this.bombsAvailable = 3;
     this.activeBombs = new Set();
@@ -18,7 +18,7 @@ export class Player {
     player.style.height = `${this.tileMap.tileSize - 4}px`;
     player.style.backgroundColor = "#FF0000";
     player.style.position = "absolute";
-    player.style.borderRadius = "50%";
+    player.style.borderRadius = "0%";
     document.getElementById("gameContainer").appendChild(player);
     return player;
   }
