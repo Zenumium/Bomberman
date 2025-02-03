@@ -1,3 +1,8 @@
+import { TileMap } from "./Tilemap.js";
+import { CollisionManager } from "./collison.js";
+import { Player } from "./player.js";
+import { PauseManager } from "./pause.js";
+
 // Game.js
 export class Game {
   constructor() {

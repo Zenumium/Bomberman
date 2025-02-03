@@ -1,4 +1,8 @@
 // TileMap.js
+
+// 0 - empty space
+// 1 -wallMap
+//  2 - Breakwall
 export class TileMap {
   constructor() {
     this.tileSize = 32;
