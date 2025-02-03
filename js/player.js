@@ -40,7 +40,7 @@ export class Player {
     this.playerElement.style.position = "absolute";
     this.playerElement.style.width = `${this.tileSize}px`;
     this.playerElement.style.height = `${this.tileSize}px`;
-    this.playerElement.style.backgroundColor = "red";
+    this.playerElement.style.backgroundColor = "blue";
     this.playerElement.style.zIndex = "";
 
     this.playerElement.style.left = playerTile.offsetLeft + "px";
