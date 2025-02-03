@@ -1,7 +1,7 @@
 // TileMap.js
 
 // 0 - empty space
-// 1 -wallMap
+// 1 - wallMap
 // 2 - Breakwall
 // 3 - player
 export class TileMap {
