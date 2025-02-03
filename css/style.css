@@ -23,6 +23,7 @@
   background-size: cover;
   background-position: center;
   z-index: -99999;
+  border-radius: 130px 80px 250px 10px;
 }
 body {
   height: 100%;
