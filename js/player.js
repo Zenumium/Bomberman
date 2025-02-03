@@ -177,9 +177,6 @@ export class Player {
         case " ":
           this.placeBomb();
           break;
-        // case "escape":
-        //   this.pauseManager.togglePause(); // pause here but doesn't work for now
-        //   break;
       }
     });
   }

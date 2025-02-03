@@ -1,7 +1,6 @@
 import { TileMap } from "./Tilemap.js";
 import { CollisionManager } from "./collison.js";
 import { Player } from "./player.js";
-import { PauseManager } from "./pause.js";
 
 const tileMap = new TileMap();
 tileMap.draw();
@@ -16,15 +15,6 @@ export class Game {
     this.player = new Player(this.tileMap, this.collisionManager); // where the player is positioned
     this.pauseManager = new PauseManager(this);
     this.setupControls();
-  }
-  pause() {
-    // Pause the game logic here
-    this.isRunning = false;
-  }
-
-  resume() {
-    // Resume the game logic here
-    this.isRunning = true;
   }
   setupControls() {
     document.addEventListener("keydown", (e) => {
@@ -46,9 +36,6 @@ export class Game {
           break;
         case " ":
           this.player.placeBomb();
-          break;
-        case "Escape":
-          this.pauseManager.togglePause();
           break;
       }
     });
