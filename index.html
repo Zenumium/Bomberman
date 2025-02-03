@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="./css/Buttonstyle.css" />
     <link rel="stylesheet" href="./css/style.css" />
     <title>Bomberman</title>
-    <style>
-      #gameContainer {
-        position: relative;
-        margin: 20px auto;
-        width: fit-content;
-      }
-      #gameBoard {
-        border: 2px solid #000;
-      }
-    </style>
   </head>
   <body>
     <div id="gameContainer">
       <div id="gameBoard"></div>
+      <img
+        src="./assests/game-boy-color-logo.png"
+        alt="Bomberman Logo"
+        id="gameLogo"
+      />
+           <!-- Gameboy Buttons -->
+           <div id="gameboy-controls">
+            <button class="gameboy-button" id="a-button"></button>
+            <button class="gameboy-button" id="b-button"></button>
+          </div>
+        </div>
     </div>
+ 
     <script type="module" src="/js/Tilemap.js"></script>
     <script type="module" src="/js/collison.js"></script>
     <script type="module" src="/js/player.js"></script>
