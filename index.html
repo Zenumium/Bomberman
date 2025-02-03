@@ -1,52 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <link rel="icon" type="image/png" href="./assests/image/Gameboy_Icon.png" />
+    <meta charset="UTF-8" />
+    <title>Bomberman Game</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="/assests/image/game-boy-color-logo.png"
+    />
     <link rel="stylesheet" href="./css/displaystyle.css" />
     <link rel="stylesheet" href="./css/bombstyle.css" />
     <link rel="stylesheet" href="./css/Buttonstyle.css" />
     <link rel="stylesheet" href="./css/Playerstyle.css" />
-    <link rel="stylesheet" href="./css/style.css" />
-    <title>Bomberman</title>
+    <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
-    <div id="gameContainer">
-      <div id="gameBoard"></div>
-      <img
-        src="./assests/image/game-boy-color-logo.png"
-        alt="Bomberman Logo"
-        id="gameLogo"
-      />
-      <!-- Gameboy Buttons -->
-      <div id="gameboy-controls">
-        <div id="background">
-          <div id="background-1"></div>
-        </div>
-        <button class="battery" id="batterydot">
-          <h3>BATTERY</h3>
-        </button>
-        <button class="gameboy-button" id="a-button"></button>
-        <button class="gameboy-button" id="b-button"></button>
-        <div class="square-pad">
-          <button class="square-pad-top" id="top"></button>
-          <button class="square-pad-left" id="left"></button>
-          <button class="square-pad-middle" id="middle"></button>
-          <button class="square-pad-right" id="right"></button>
-          <button class="square-pad-bottom" id="bottom"></button>
-        </div>
+    <div class="square"></div>
+    <div class="square-sidescreen"></div>
+    <div id="game-container">
+      <div id="tilemap"></div>
+      <div id="player"></div>
+      <div id="pause-menu" class="hidden">
+        <h2>PAUSED</h2>
       </div>
-    </div>
+      <button class="battery" id="batterydot">
+        <h3>BATTERY</h3>
+      </button>
 
-    <script type="module" src="/js/Tilemap.js"></script>
-    <script type="module" src="/js/bomb.js"></script>
-    <script type="module" src="/js/collison.js"></script>
-    <script type="module" src="/js/player.js"></script>
-    <script type="module" src="/js/pause.js"></script>
-    <script type="module" src="/js/game.js"></script>
-    <script type="module">
-      import { Game } from "./js/game.js";
-      const game = new Game();
-      game.start();
-    </script>
+      <button class="gameboy-button" id="a-button"></button>
+      <button class="gameboy-button" id="b-button"></button>
+      <div class="square-pad">
+        <button class="square-pad-top" id="top"></button>
+        <button class="square-pad-left" id="left"></button>
+        <button class="square-pad-middle" id="middle"></button>
+        <button class="square-pad-right" id="right"></button>
+        <button class="square-pad-bottom" id="bottom"></button>
+      </div>
+      <img
+        src="
+        ./assests/image/game-boy-color-logo.png"
+        alt="Image"
+        class="game-image"
+      />
+    </div>
+    <script src="/js/player.js"></script>
+    <script src="/js/tilemap.js"></script>
+    <script src="/js/collision.js"></script>
+    <script src="/js/bombcollision.js"></script>
+    <script src="/js/pause.js"></script>
+    <script src="/js/game.js"></script>
   </body>
 </html>
