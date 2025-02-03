@@ -110,12 +110,21 @@ export class Player {
       explosionElement.style.position = "absolute";
       explosionElement.style.width = `${this.tileSize}px`;
       explosionElement.style.height = `${this.tileSize}px`;
-      explosionElement.style.backgroundColor = "red";
       explosionElement.style.zIndex = "";
       explosionElement.style.left = `${x * this.tileSize}px`;
       explosionElement.style.top = `${y * this.tileSize}px`;
 
       explosionElement.style.animation = "explode 0.5s";
+
+      // Create an img element for the explosion image
+      const explosionImage = document.createElement("img");
+      explosionImage.src = "/assests/src-game/explosion.png"; // replace with your image URL
+      explosionImage.style.width = "100%";
+      explosionImage.style.height = "100%";
+      explosionImage.style.objectFit = "cover";
+
+      // Append the img element to the explosionElement
+      explosionElement.appendChild(explosionImage);
 
       const gameBoard = document.getElementById("gameBoard");
       gameBoard.appendChild(explosionElement);
