@@ -1,6 +1,6 @@
 #a-button {
   position: absolute;
-  top: 640px;
+  top: 700px;
   right: 10px;
   width: 60px;
   height: 60px;
@@ -13,8 +13,8 @@
 }
 #b-button {
   position: absolute;
-  top: 710px;
-  right: 80px;
+  top: 780px;
+  right: 90px;
   width: 60px;
   height: 60px;
   background-color: #bb1803;
@@ -28,7 +28,7 @@
   position: absolute;
   background-color: black;
   border: none;
-  top: 620px;
+  top: 730px;
   left: 80px;
   width: 50px;
   height: 50px;
@@ -39,7 +39,7 @@
   position: absolute;
   background-color: black;
   border: none;
-  top: 670px;
+  top: 780px;
   left: 130px;
   width: 50px;
   height: 50px;
@@ -50,7 +50,7 @@
   position: absolute;
   background-color: black;
   border: none;
-  top: 670px;
+  top: 780px;
   left: 30px;
   width: 50px;
   height: 50px;
@@ -61,7 +61,7 @@
   position: absolute;
   background-color: black;
   border: none;
-  top: 720px;
+  top: 830px;
   left: 80px;
   width: 50px;
   height: 50px;
@@ -72,7 +72,7 @@
   position: absolute;
   background-color: black;
   border: none;
-  top: 670px;
+  top: 780px;
   left: 80px;
   width: 50px;
   height: 50px;
