@@ -13,14 +13,19 @@
         alt="Bomberman Logo"
         id="gameLogo"
       />
-           <!-- Gameboy Buttons -->
-           <div id="gameboy-controls">
-            <button class="gameboy-button" id="a-button"></button>
-            <button class="gameboy-button" id="b-button"></button>
-          </div>
-        </div>
+      <!-- Gameboy Buttons -->
+      <div id="gameboy-controls">
+        <button class="gameboy-button" id="a-button"></button>
+        <button class="gameboy-button" id="b-button"></button>
+        <div class="square-pad">
+          <button class="square-pad-top" id="top"></button>
+          <button class="square-pad-left" id="left"></button>
+          <button class="square-pad-middle" id="middle"></button>
+          <button class="square-pad-right" id="right"></button>
+          <button class="square-pad-bottom" id="bottom"></button>
+      </div>
     </div>
- 
+
     <script type="module" src="/js/Tilemap.js"></script>
     <script type="module" src="/js/collison.js"></script>
     <script type="module" src="/js/player.js"></script>
