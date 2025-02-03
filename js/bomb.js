@@ -81,6 +81,36 @@ export class Bomb {
       setTimeout(() => {
         explosionElement.remove();
       }, 500); // 500ms = 0.5 seconds
+
+      this.breakSurroundingTiles();
     }, 2000); // 2000ms = 2 seconds
+  }
+
+  breakSurroundingTiles() {
+    const directions = [
+      [-1, 0], // left
+      [1, 0], // right
+      [0, -1], // up
+      [0, 1], // down
+    ];
+
+    for (const direction of directions) {
+      const newX = this.x + direction[0];
+      const newY = this.y + direction[1];
+
+      if (
+        newX >= 0 &&
+        newX < this.map[0].length &&
+        newY >= 0 &&
+        newY < this.map.length &&
+        this.map[newY][newX] === 2
+      ) {
+        this.map[newY][newX] = 0; // break the breakable tile
+        const breakableTile = document.querySelector(
+          `[data-x="${newX}"][data-y="${newY}"]`
+        );
+        if (breakableTile) breakableTile.remove();
+      }
+    }
   }
 }

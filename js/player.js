@@ -60,6 +60,12 @@ export class Player {
       const bomb = new Bomb(this.map, this.x, this.y, this.tileSize);
       bomb.render();
       bomb.explode();
+    } else if (this.map[this.y][this.x] === 2) {
+      console.log(`Placing bomb on breakable tile at (${this.x}, ${this.y})`);
+      this.map[this.y][this.x] = 4; // 4 represents a bomb
+      const bomb = new Bomb(this.map, this.x, this.y, this.tileSize);
+      bomb.render();
+      bomb.explode();
     } else {
       console.log(
         `Cannot place bomb at (${this.x}, ${this.y}) - tile is occupied`
@@ -78,6 +84,7 @@ export class Player {
       newY >= 0 &&
       newY < this.map.length &&
       this.map[newY][newX] !== 1 && // wall
+      this.map[newY][newX] !== 2 && // breakable tile
       this.map[newY][newX] !== 4 // bomb
     ) {
       this.map[this.y][this.x] = 0;
