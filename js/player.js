@@ -14,8 +14,8 @@ export class Player {
   createPlayerElement() {
     const player = document.createElement("div");
     player.id = "player";
-    player.style.width = `${this.tileMap.tileSize - 4}px`;
-    player.style.height = `${this.tileMap.tileSize - 4}px`;
+    player.style.width = `${this.tileMap.tileSize - 1}px`;
+    player.style.height = `${this.tileMap.tileSize - 1}px`;
     player.style.backgroundColor = "#FF0000";
     player.style.position = "absolute";
     player.style.borderRadius = "0%";
@@ -42,13 +42,22 @@ export class Player {
         break;
     }
 
-    if (!this.collisionManager.checkCollision(newX, newY)) {
+    // Calculate map boundaries
+    const mapWidth = this.tileMap.width * this.tileMap.tileSize;
+    const mapHeight = this.tileMap.height * this.tileMap.tileSize;
+
+    if (
+      newX >= 0 &&
+      newX + this.element.offsetWidth <= mapWidth &&
+      newY >= 0 &&
+      newY + this.element.offsetHeight <= mapHeight &&
+      !this.collisionManager.checkCollision(newX, newY)
+    ) {
       this.x = newX;
       this.y = newY;
       this.updatePosition();
     }
   }
-
   updatePosition() {
     this.element.style.left = `${this.x}px`;
     this.element.style.top = `${this.y}px`;

@@ -2,14 +2,13 @@ import { TileMap } from "./Tilemap.js";
 import { CollisionManager } from "./collison.js";
 import { Player } from "./player.js";
 import { PauseManager } from "./pause.js";
-import { Bomb } from "./bomb.js";
 
 // Game.js
 export class Game {
   constructor() {
     this.tileMap = new TileMap();
     this.collisionManager = new CollisionManager(this.tileMap);
-    this.player = new Player(32, 32, this.tileMap, this.collisionManager);
+    this.player = new Player(67, 67, this.tileMap, this.collisionManager); // where the player is positioned
     this.pauseManager = new PauseManager(this);
     this.setupControls();
   }
