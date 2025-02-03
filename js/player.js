@@ -1,3 +1,5 @@
+let playerHealth = 100;
+
 class Player {
   constructor(x = 1, y = 1) {
     this.x = x;
@@ -52,5 +54,11 @@ class Player {
       // Could add sound effect or visual indicator
       console.log("Bomb placed at", this.x, this.y);
     }
+  }
+}
+function reduceHealth(damage) {
+  playerHealth -= damage;
+  if (playerHealth <= 0) {
+    console.log("Game Over");
   }
 }

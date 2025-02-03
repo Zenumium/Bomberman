@@ -21,7 +21,11 @@ class Game {
     this.isPaused = !this.isPaused;
   }
 }
-
+function gameLoop() {
+  // Game loop logic can be added here
+  checkBombCollision(player, bomb);
+  requestAnimationFrame(gameLoop);
+}
 // Initialize the game when the page loads
 window.addEventListener("load", () => {
   Game.init();
