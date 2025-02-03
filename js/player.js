@@ -1,84 +1,92 @@
-import { Bomb } from "./bomb.js";
 export class Player {
-  constructor(x, y, tileMap, collisionManager) {
-    this.x = x;
-    this.y = y;
+  constructor(tileMap) {
+    if (!tileMap || !tileMap.map || !tileMap.map.length) {
+      throw new Error("Invalid TileMap provided");
+    }
     this.tileMap = tileMap;
-    this.collisionManager = collisionManager;
-    this.speed = 5;
-    this.element = this.createPlayerElement();
-    this.bombsAvailable = 3;
-    this.activeBombs = new Set();
+    this.findInitialPosition();
+    this.playerElement = null;
   }
 
-  createPlayerElement() {
-    const player = document.createElement("div");
-    player.id = "player";
-    player.style.width = `${this.tileMap.tileSize - 1}px`;
-    player.style.height = `${this.tileMap.tileSize - 1}px`;
-    player.style.backgroundColor = "#FF0000";
-    player.style.position = "absolute";
-    player.style.borderRadius = "0%";
-    document.getElementById("gameContainer").appendChild(player);
-    return player;
+  findInitialPosition() {
+    for (let y = 0; y < this.tileMap.map.length; y++) {
+      for (let x = 0; x < this.tileMap.map[y].length; x++) {
+        if (this.tileMap.map[y][x] === 3) {
+          this.x = x;
+          this.y = y;
+          return;
+        }
+      }
+    }
+    // If no player start position is found, default to first row
+    this.x = 0;
+    this.y = 0;
+    console.warn("No player start position found. Defaulting to (0,0)");
   }
 
-  move(direction) {
-    let newX = this.x;
-    let newY = this.y;
+  render() {
+    const existingPlayer = document.querySelector(".player");
+    if (existingPlayer) existingPlayer.remove();
 
-    switch (direction) {
-      case "up":
-        newY -= this.speed;
-        break;
-      case "down":
-        newY += this.speed;
-        break;
-      case "left":
-        newX -= this.speed;
-        break;
-      case "right":
-        newX += this.speed;
-        break;
+    const gameBoard = document.getElementById("gameBoard");
+    const playerTile = gameBoard.querySelector(
+      `[data-x="${this.x}"][data-y="${this.y}"]`
+    );
+
+    if (!playerTile) {
+      console.error("Unable to find player tile");
+      return;
     }
 
-    // Calculate map boundaries
-    const mapWidth = this.tileMap.width * this.tileMap.tileSize;
-    const mapHeight = this.tileMap.height * this.tileMap.tileSize;
+    this.playerElement = document.createElement("div");
+    this.playerElement.classList.add("player");
+    this.playerElement.style.position = "absolute";
+    this.playerElement.style.width = `${this.tileMap.tileSize}px`;
+    this.playerElement.style.height = `${this.tileMap.tileSize}px`;
+    this.playerElement.style.backgroundColor = "red";
+    this.playerElement.style.zIndex = "10";
+
+    this.playerElement.style.left = playerTile.offsetLeft + "px";
+    this.playerElement.style.top = playerTile.offsetTop + "px";
+
+    gameBoard.appendChild(this.playerElement);
+  }
+
+  move(dx, dy) {
+    const newX = this.x + dx;
+    const newY = this.y + dy;
 
     if (
       newX >= 0 &&
-      newX + this.element.offsetWidth <= mapWidth &&
+      newX < this.tileMap.map[0].length &&
       newY >= 0 &&
-      newY + this.element.offsetHeight <= mapHeight &&
-      !this.collisionManager.checkCollision(newX, newY)
+      newY < this.tileMap.map.length &&
+      this.tileMap.getTile(newX, newY) !== 1
     ) {
+      this.tileMap.setTile(this.x, this.y, 0);
       this.x = newX;
       this.y = newY;
-      this.updatePosition();
+      this.tileMap.setTile(this.x, this.y, 3);
+      this.render();
     }
   }
-  updatePosition() {
-    this.element.style.left = `${this.x}px`;
-    this.element.style.top = `${this.y}px`;
-  }
 
-  placeBomb() {
-    const tileX = Math.floor(this.x / this.tileMap.tileSize);
-    const tileY = Math.floor(this.y / this.tileMap.tileSize);
-
-    if (this.bombsAvailable > 0 && this.tileMap.getTile(tileX, tileY) === 0) {
-      const bomb = new Bomb(tileX, tileY, this.tileMap);
-      this.activeBombs.add(bomb);
-      this.bombsAvailable--;
-
-      bomb.plant();
-
-      // Return bomb to player after explosion
-      setTimeout(() => {
-        this.activeBombs.delete(bomb);
-        this.bombsAvailable++;
-      }, bomb.explosionTimeout);
-    }
+  setupControls() {
+    document.addEventListener("keydown", (event) => {
+      switch (event.key) {
+        case "ArrowUp":
+          this.move(0, -1);
+          break;
+        case "ArrowDown":
+          this.move(0, 1);
+          break;
+        case "ArrowLeft":
+          this.move(-1, 0);
+          break;
+        case "ArrowRight":
+          this.move(1, 0);
+          break;
+      }
+    });
   }
 }

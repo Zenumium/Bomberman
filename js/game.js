@@ -3,12 +3,17 @@ import { CollisionManager } from "./collison.js";
 import { Player } from "./player.js";
 import { PauseManager } from "./pause.js";
 
+const tileMap = new TileMap();
+tileMap.draw();
+const player = new Player(tileMap);
+player.render();
+player.setupControls();
 // Game.js
 export class Game {
   constructor() {
     this.tileMap = new TileMap();
     this.collisionManager = new CollisionManager(this.tileMap);
-    this.player = new Player(67, 67, this.tileMap, this.collisionManager); // where the player is positioned
+    this.player = new Player(32, 32, this.tileMap, this.collisionManager); // where the player is positioned
     this.pauseManager = new PauseManager(this);
     this.setupControls();
   }
@@ -16,6 +21,7 @@ export class Game {
   setupControls() {
     document.addEventListener("keydown", (e) => {
       if (this.pauseManager.isPaused) return;
+      console.log("keys pressed"); // log the keypress
 
       switch (e.key) {
         case "ArrowUp":
