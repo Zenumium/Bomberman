@@ -49,6 +49,7 @@ export class Player {
     gameBoard.appendChild(this.playerElement);
   }
 
+  // place the bomb on the map
   placeBomb() {
     if (this.map[this.y][this.x] === 3) {
       this.map[this.y][this.x] = 4; // 4 represents a bomb
@@ -57,6 +58,7 @@ export class Player {
     }
   }
 
+  // render the bomb in the map
   renderBomb() {
     const gameBoard = document.getElementById("gameBoard");
     const bombTile = gameBoard.querySelector(
@@ -87,6 +89,7 @@ export class Player {
     gameBoard.appendChild(bombElement);
   }
 
+  // func that make the bomb explode after 2sec with timer
   explodeBomb(x, y) {
     console.log(`Exploding bomb at coordinates (${x}, ${y})`);
     setTimeout(() => {
@@ -120,6 +123,7 @@ export class Player {
     }, 2000); // 2000ms = 2 seconds
   }
 
+  // allows the player to move in the Tilemap
   move(dx, dy) {
     const newX = this.x + dx;
     const newY = this.y + dy;
@@ -140,6 +144,7 @@ export class Player {
     }
   }
 
+  // setup the controls for the player
   setupControls() {
     document.addEventListener("keydown", (event) => {
       switch (event.key) {
@@ -157,6 +162,9 @@ export class Player {
           break;
         case " ":
           this.placeBomb();
+          break;
+        case "escape":
+          this.pauseManager.togglePause();
           break;
       }
     });

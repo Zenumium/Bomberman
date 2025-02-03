@@ -17,7 +17,15 @@ export class Game {
     this.pauseManager = new PauseManager(this);
     this.setupControls();
   }
+  pause() {
+    // Pause the game logic here
+    this.isRunning = false;
+  }
 
+  resume() {
+    // Resume the game logic here
+    this.isRunning = true;
+  }
   setupControls() {
     document.addEventListener("keydown", (e) => {
       if (this.pauseManager.isPaused) return;
