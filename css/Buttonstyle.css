@@ -1,0 +1,24 @@
+#a-button {
+  position: absolute;
+  top: 640px;
+  right: 10px;
+  width: 60px;
+  height: 60px;
+  background-color: #bb1803;
+  border: none;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: default;
+}
+#b-button {
+  position: absolute;
+  top: 710px;
+  right: 80px;
+  width: 60px;
+  height: 60px;
+  background-color: #bb1803;
+  border: none;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: default;
+}

@@ -1,3 +1,19 @@
+#gameContainer {
+  position: relative;
+  margin: 20px auto;
+  width: fit-content;
+}
+#gameBoard {
+  border: 2px solid #000;
+}
+
+#gameLogo {
+  position: absolute;
+  top: 390px;
+  left: 40px;
+  width: 150px;
+}
+
 body {
   height: 100%;
   margin: 0;
@@ -10,13 +26,6 @@ body {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-}
-
-.tile {
-  width: 40px;
-  height: 40px;
-  border-radius: 3px;
-  transition: background-color 0.2s;
 }
 
 .empty {
@@ -80,3 +89,21 @@ body {
     opacity: 0;
   }
 }
+
+/* h1 display  */
+
+/* h1 {
+  font-size: 2.5rem;
+  text-align: left;
+  color: #ffffff;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  transition: color 0.5s ease;
+  position: absolute;
+  top: 420px;
+  left: 40px;
+}
+
+h1:hover {
+  color: #a1a17a;
+} */
