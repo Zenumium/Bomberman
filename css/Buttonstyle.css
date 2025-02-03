@@ -1,6 +1,6 @@
 #a-button {
   position: absolute;
-  top: 700px;
+  top: 720px;
   right: 10px;
   width: 60px;
   height: 60px;
@@ -13,7 +13,7 @@
 }
 #b-button {
   position: absolute;
-  top: 780px;
+  top: 800px;
   right: 90px;
   width: 60px;
   height: 60px;
