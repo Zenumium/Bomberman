@@ -13,12 +13,23 @@
   left: 40px;
   width: 150px;
 }
-
+#background {
+  position: absolute;
+  top: -90px;
+  left: -85px;
+  width: 765px;
+  height: 1200px;
+  background-color: rgb(181, 181, 182);
+  background-size: cover;
+  background-position: center;
+  z-index: -99999;
+}
 body {
   height: 100%;
   margin: 0;
   background-color: #424242;
   font-family: Arial, sans-serif;
+  overflow-y: hidden;
 }
 
 .game-container {
@@ -39,20 +50,6 @@ body {
 
 .breakable {
   background-color: #e67e22;
-}
-
-.controls {
-  margin-top: 20px;
-  color: #ecf0f1;
-  text-align: center;
-}
-
-.controls h2 {
-  margin-bottom: 10px;
-}
-
-.controls p {
-  margin: 5px 0;
 }
 
 /* h1 display  */
