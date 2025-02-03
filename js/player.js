@@ -77,7 +77,6 @@ export class Player {
     bombElement.style.position = "absolute";
     bombElement.style.width = `${this.tileSize}px`;
     bombElement.style.height = `${this.tileSize}px`;
-    bombElement.style.backgroundColor = "black";
     bombElement.style.zIndex = "";
 
     bombElement.style.left = bombTile.offsetLeft + "px";
@@ -86,9 +85,16 @@ export class Player {
     bombElement.setAttribute("data-x", this.x);
     bombElement.setAttribute("data-y", this.y);
 
+    const bombImage = document.createElement("img");
+    bombImage.src = "/assests/bomb.png"; // replace with your image URL
+    bombImage.style.width = "100%";
+    bombImage.style.height = "100%";
+    bombImage.style.objectFit = "cover";
+
+    bombElement.appendChild(bombImage);
+
     gameBoard.appendChild(bombElement);
   }
-
   // func that make the bomb explode after 2sec with timer
   explodeBomb(x, y) {
     console.log(`Exploding bomb at coordinates (${x}, ${y})`);
