@@ -30,7 +30,7 @@ class Tilemap {
 
   shouldCreateBreakableBlock(x, y) {
     // Avoid player start area and create random breakable blocks
-    if ((x <= 2 && y <= 2) || (x >= 12 && y >= 8)) return false;
+    if ((x <= 2 && y <= 2) || (x >= 12 && y >= 50)) return false;
     return Math.random() < 0.3 && x % 2 !== 0 && y % 2 !== 0;
   }
 
