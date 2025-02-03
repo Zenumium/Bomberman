@@ -41,28 +41,6 @@ body {
   background-color: #e67e22;
 }
 
-.bomb {
-  background-color: #c0392b;
-  animation: pulse 1s infinite;
-}
-
-.player {
-  background-color: #3498db;
-  border-radius: 50%;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(0.9);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
 .controls {
   margin-top: 20px;
   color: #ecf0f1;
@@ -75,19 +53,6 @@ body {
 
 .controls p {
   margin: 5px 0;
-}
-.explosion {
-  animation: explode 0.5s;
-}
-
-@keyframes explode {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(2);
-    opacity: 0;
-  }
 }
 
 /* h1 display  */
