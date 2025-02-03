@@ -12,24 +12,19 @@ export class Bomb {
     const bombTile = gameBoard.querySelector(
       `[data-x="${this.x}"][data-y="${this.y}"]`
     );
-
     const existingBomb = document.querySelector(
       `.bomb[data-x="${this.x}"][data-y="${this.y}"]`
     );
     if (existingBomb) existingBomb.remove();
-
     if (!bombTile) return;
-
     const bombElement = document.createElement("div");
     bombElement.classList.add("bomb");
     bombElement.style.position = "absolute";
     bombElement.style.width = `${this.tileSize}px`;
     bombElement.style.height = `${this.tileSize}px`;
     bombElement.style.zIndex = "";
-
     bombElement.style.left = bombTile.offsetLeft + "px";
     bombElement.style.top = bombTile.offsetTop + "px";
-
     bombElement.setAttribute("data-x", this.x);
     bombElement.setAttribute("data-y", this.y);
     // Create an img element for the bomb image
@@ -38,9 +33,7 @@ export class Bomb {
     bombImage.style.width = "100%";
     bombImage.style.height = "100%";
     bombImage.style.objectFit = "cover";
-
     bombElement.appendChild(bombImage);
-
     gameBoard.appendChild(bombElement);
   }
 
@@ -53,7 +46,6 @@ export class Bomb {
         `.bomb[data-x="${this.x}"][data-y="${this.y}"]`
       );
       if (bombElement) bombElement.remove();
-
       const explosionElement = document.createElement("div");
       explosionElement.classList.add("explosion");
       explosionElement.style.position = "absolute";
@@ -62,55 +54,20 @@ export class Bomb {
       explosionElement.style.zIndex = "";
       explosionElement.style.left = `${this.x * this.tileSize}px`;
       explosionElement.style.top = `${this.y * this.tileSize}px`;
-
       explosionElement.style.animation = "explode 0.5s";
-
       // Create an img element for the explosion image
       const explosionImage = document.createElement("img");
       explosionImage.src = "/assests/src-game/explosion.png";
       explosionImage.style.width = "100%";
       explosionImage.style.height = "100%";
       explosionImage.style.objectFit = "cover";
-
       explosionElement.appendChild(explosionImage);
-
       const gameBoard = document.getElementById("gameBoard");
       gameBoard.appendChild(explosionElement);
-
       // Remove the explosion element after the animation finishes
       setTimeout(() => {
         explosionElement.remove();
       }, 500); // 500ms = 0.5 seconds
-
-      this.breakSurroundingTiles();
     }, 2000); // 2000ms = 2 seconds
-  }
-
-  breakSurroundingTiles() {
-    const directions = [
-      [-1, 0], // left
-      [1, 0], // right
-      [0, -1], // up
-      [0, 1], // down
-    ];
-
-    for (const direction of directions) {
-      const newX = this.x + direction[0];
-      const newY = this.y + direction[1];
-
-      if (
-        newX >= 0 &&
-        newX < this.map[0].length &&
-        newY >= 0 &&
-        newY < this.map.length &&
-        this.map[newY][newX] === 2
-      ) {
-        this.map[newY][newX] = 0; // break the breakable tile
-        const breakableTile = document.querySelector(
-          `[data-x="${newX}"][data-y="${newY}"]`
-        );
-        if (breakableTile) breakableTile.remove();
-      }
-    }
   }
 }
