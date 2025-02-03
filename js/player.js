@@ -53,6 +53,7 @@ export class Player {
     if (this.map[this.y][this.x] === 3) {
       this.map[this.y][this.x] = 4; // 4 represents a bomb
       this.renderBomb();
+      this.explodeBomb(this.x, this.y);
     }
   }
 
@@ -84,6 +85,39 @@ export class Player {
     bombElement.setAttribute("data-y", this.y);
 
     gameBoard.appendChild(bombElement);
+  }
+
+  explodeBomb(x, y) {
+    console.log(`Exploding bomb at coordinates (${x}, ${y})`);
+    setTimeout(() => {
+      this.map[y][x] = 0; // reset the tile to empty
+      const bombElement = document.querySelector(
+        `.bomb[data-x="${x}"][data-y="${y}"]`
+      );
+      if (bombElement) bombElement.remove();
+
+      const explosionElement = document.createElement("div");
+      explosionElement.classList.add("explosion");
+      explosionElement.style.position = "absolute";
+      explosionElement.style.width = `${this.tileSize}px`;
+      explosionElement.style.height = `${this.tileSize}px`;
+      explosionElement.style.backgroundColor = "red";
+      explosionElement.style.zIndex = "";
+      explosionElement.style.left = `${x * this.tileSize}px`;
+      explosionElement.style.top = `${y * this.tileSize}px`;
+
+      explosionElement.style.animation = "explode 0.5s";
+
+      const gameBoard = document.getElementById("gameBoard");
+      gameBoard.appendChild(explosionElement);
+
+      // Remove the explosion element after the animation finishes
+      setTimeout(() => {
+        explosionElement.remove();
+      }, 500); // 500ms = 0.5 seconds
+
+      this.render();
+    }, 2000); // 2000ms = 2 seconds
   }
 
   move(dx, dy) {
