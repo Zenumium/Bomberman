@@ -1,13 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bomberman Tilemap</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <title>Bomberman</title>
+    <style>
+      #gameContainer {
+        position: relative;
+        margin: 20px auto;
+        width: fit-content;
+      }
+      #gameBoard {
+        border: 2px solid #000;
+      }
+    </style>
   </head>
   <body>
-    <div class="game-container">
-      <div id="map" class="map"></div>
+    <div id="gameContainer">
+      <div id="gameBoard"></div>
     </div>
-    <script src="js/Mainscript.js"></script>
+    <script type="module" src="/js/Tilemap.js"></script>
+    <script type="module" src="/js/collison.js"></script>
+    <script type="module" src="/js/player.js"></script>
+    <script type="module" src="/js/bomb.js"></script>
+    <script type="module" src="/js/pause.js"></script>
+    <script type="module" src="/js/game.js"></script>
+    <script type="module">
+      import { Game } from "./Game.js";
+      const game = new Game();
+      game.start();
+    </script>
   </body>
 </html>
