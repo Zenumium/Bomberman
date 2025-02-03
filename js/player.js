@@ -49,6 +49,43 @@ export class Player {
     gameBoard.appendChild(this.playerElement);
   }
 
+  placeBomb() {
+    if (this.map[this.y][this.x] === 3) {
+      this.map[this.y][this.x] = 4; // 4 represents a bomb
+      this.renderBomb();
+    }
+  }
+
+  renderBomb() {
+    const gameBoard = document.getElementById("gameBoard");
+    const bombTile = gameBoard.querySelector(
+      `[data-x="${this.x}"][data-y="${this.y}"]`
+    );
+
+    const existingBomb = document.querySelector(
+      `.bomb[data-x="${this.x}"][data-y="${this.y}"]`
+    );
+    if (existingBomb) existingBomb.remove();
+
+    if (!bombTile) return;
+
+    const bombElement = document.createElement("div");
+    bombElement.classList.add("bomb");
+    bombElement.style.position = "absolute";
+    bombElement.style.width = `${this.tileSize}px`;
+    bombElement.style.height = `${this.tileSize}px`;
+    bombElement.style.backgroundColor = "black";
+    bombElement.style.zIndex = "";
+
+    bombElement.style.left = bombTile.offsetLeft + "px";
+    bombElement.style.top = bombTile.offsetTop + "px";
+
+    bombElement.setAttribute("data-x", this.x);
+    bombElement.setAttribute("data-y", this.y);
+
+    gameBoard.appendChild(bombElement);
+  }
+
   move(dx, dy) {
     const newX = this.x + dx;
     const newY = this.y + dy;
@@ -58,7 +95,8 @@ export class Player {
       newX < this.map[0].length &&
       newY >= 0 &&
       newY < this.map.length &&
-      this.map[newY][newX] !== 1
+      this.map[newY][newX] !== 1 && // wall
+      this.map[newY][newX] !== 4 // bomb
     ) {
       this.map[this.y][this.x] = 0;
       this.x = newX;
@@ -82,6 +120,9 @@ export class Player {
           break;
         case "ArrowRight":
           this.move(1, 0);
+          break;
+        case " ":
+          this.placeBomb();
           break;
       }
     });
