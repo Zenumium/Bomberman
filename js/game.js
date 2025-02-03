@@ -2,6 +2,7 @@ import { TileMap } from "./Tilemap.js";
 import { CollisionManager } from "./collison.js";
 import { Player } from "./player.js";
 import { PauseManager } from "./pause.js";
+import { Bomb } from "./bomb.js";
 
 // Game.js
 export class Game {
@@ -30,7 +31,7 @@ export class Game {
         case "ArrowRight":
           this.player.move("right");
           break;
-        case " ":
+        case "32":
           this.player.placeBomb();
           break;
         case "Escape":
