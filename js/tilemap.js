@@ -13,6 +13,7 @@ class Tilemap {
         tile.classList.add("tile");
 
         // Create walls around the edges
+        // Randomizers
         if (x === 0 || x === 14 || y === 0 || y === 10) {
           tile.classList.add("wall");
         }
